@@ -32,7 +32,7 @@ This project reproduces STDCNet-Seg based on paddlepaddle framework.
 
 **复现结果**：
 
-- Backbone利用ImageNet上的预训练Pytorch模型参数转为Paddle模型参数，采用80000 iter，batch_size=36，base_lr=0.01 warmup+poly的学习率策略，**STDCNet2-Seg50模型在Cityscaps VAL数据集上达到了74.37(now best,完整训练还未完成)的mIOU**。***说明：采用这个方案的原因是因为AIStudio提供的单卡32G环境允许的1024×512输入最大的batch_size为36，若内存够用/使用多卡，还是推荐使用作者提供的参数。训练好的模型在最下面有链接。训练代码train.py和日志train.log都已经上传到仓库。*
+- Backbone利用ImageNet上的预训练Pytorch模型参数转为Paddle模型参数，采用80000 iter，batch_size=36，base_lr=0.01 warmup+poly的学习率策略，**STDCNet2-Seg50模型在Cityscaps VAL数据集上达到了74.37(now best,完整训练还未完成)的mIOU**。***说明：采用这个方案的原因是因为AIStudio提供的单卡32G环境允许的1024×512输入最大的batch_size为36，若内存够用/使用多卡，还是推荐使用作者提供的参数。训练好的模型在最下面有链接。训练代码train.py和日志train.log（74.37miou）、vdlrecords.1629043924.log（74.62miou完整训练日志）都已经上传到仓库。*
 
 - 补充实验（单次实验结果）：Backbone无ImageNet上预训练的模型，在60000 iters, batch_size = 32，0.01 poly（原论文60000 iters，batch_size=48，warmup+poly，有ImageNet预训练模型）的情况下，STDCNet2-Seg50模型在Cityscaps VAL数据集上达到了67.72的best mIOU。继续用该训模型进行进一步训练，60000 iters，batch_size = 32，0.001 poly, STDCNet2-Seg50模型在Cityscaps VAL数据集上达到了69.47的best mIOU。
 
@@ -43,7 +43,7 @@ This project reproduces STDCNet-Seg based on paddlepaddle framework.
 | Model                   | mIOU |
 | ----------------------- | -------- |
 | STDC2-Seg50 (Pytorch)     | 74.2     |
-| STDC2-Seg50 (PaddlePaddle) | 74.37(now best)     |
+| STDC2-Seg50 (PaddlePaddle) | 74.62  |
 
 asserts 里面有Evaluate_mIoU的曲线图。
 
