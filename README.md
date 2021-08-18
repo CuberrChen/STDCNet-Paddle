@@ -45,6 +45,7 @@ This project reproduces STDCNet-Seg based on paddlepaddle framework.
 | STDC2-Seg50 (Pytorch)     | 74.2     |
 | STDC2-Seg50 (PaddlePaddle) | 74.37(now best)     |
 
+asserts 里面有Evaluate_mIoU的曲线图。
 
 ![result](./asserts/Evaluate_mIoU.png)
 
@@ -146,12 +147,14 @@ details in train.py.
 ### Project Structure
 ```
 ├── README.md
-├── SRDCNet.png
-├── SRDCNet-Seg.png
+├── asserts/
 ├── data/
+├── work/
 ├── models/
 ├── loss/
 ├── tool/
+├── scheduler/
+├── pretrained/
 ├── output/
 ├── train.log
 ├── requirements.txt
@@ -168,5 +171,6 @@ For other information about the model, please refer to the following table:
 | Date              | 2021.8                                              |
 | Framework version | Paddle 2.0.2 On AIStudio                            |
 | Support hardware  | GPU(V100 32G)/CPU                                   |
-| Download link     | [stdcnetseg50.pdparams](./output/stdcnetseg50.pdparams) |
+| Download link     | [Pretrained backbone: 提取码：tss7](https://pan.baidu.com/s/16kh3aHTBBX6wfKiIG-y3yA) |
+| Download link     | [STDC2-Seg50: 提取码：nchx](https://pan.baidu.com/s/1sFHqZWhcl8hFzGCrXu_c7Q) |
 | Online operation  | Notebook will be avalible soon                      |
