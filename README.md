@@ -1,2 +1,3 @@
 # STDCNet-Paddle
-Paddle implementation version of STDCNet for paper“Rethinking BiSeNet For Real-time Semantic Segmentation”
+论文“Rethinking BiSeNet For Real-time Semantic Segmentation”的STDCNet的Paddle实现版本
+说明：提交在master分支
