@@ -117,7 +117,7 @@ The model will be saved at output/ by default.
 
 ### val/test
 
-Model outout format is similar with paddleseg model output so that you can val/test it with paddleseg tool easily by yourself.
+Model outout format is similar with paddleseg model output so that you can val/test it with paddleseg tool easily by yourself. 只需要用下面的代码替换掉train.py里的train()部分就可以了！
 eg:
 
 ``` 
