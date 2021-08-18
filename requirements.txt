@@ -1,0 +1,2 @@
+paddlepaddle>=2.0.2
+paddleseg
