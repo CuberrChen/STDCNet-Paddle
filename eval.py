@@ -5,12 +5,12 @@ import paddleseg.transforms as T
 from paddleseg.datasets import Cityscapes
 from paddleseg.models.losses import OhemCrossEntropyLoss
 from loss.detail_loss_paddle import DetailAggregateLoss
-from utils.train import train
+from paddleseg.core import evaluate
 from scheduler.warmup_poly_paddle import Warmup_PolyDecay
 
 backbone = 'STDCNet1446' # STDC2: STDCNet1446 ; STDC1: STDCNet813
 n_classes = 19 # 数据类别数目
-pretrain_path = 'pretrained/STDCNet1446_76.47.pdiparams' # backbone预训练模型参数
+pretrain_path = None # backbone预训练模型参数
 use_boundary_16 = False
 use_boundary_8 = True # 论文只用了use_boundary_8，效果最好
 use_boundary_4 = False
@@ -22,9 +22,9 @@ model = STDCSeg(backbone=backbone, n_classes=n_classes, pretrain_model=pretrain_
     use_boundary_2=use_boundary_2, use_boundary_4=use_boundary_4, use_boundary_8=use_boundary_8,
     use_boundary_16=use_boundary_16, use_conv_last=use_conv_last)
 
-# 加载模型参数训练（如果没有预训练参数就把下面两行注释掉）
-# params_state = paddle.load(path='output/best_model/model.pdparams')
-# model.set_dict(params_state)
+#加载模型参数训练（如果没有预训练参数就把下面两行注释掉）
+params_state = paddle.load(path='output/best_model/model.pdparams')
+model.set_dict(params_state)
 
 
 # 构建训练用的transforms
@@ -67,19 +67,14 @@ losses['types'] = [OhemCrossEntropyLoss(),OhemCrossEntropyLoss(),OhemCrossEntrop
 losses['coef'] = [1]*4
 
 if __name__=='__main__':
-    train(
-        model=model,
-        train_dataset=train_dataset,
-        val_dataset=val_dataset,
-        val_scales = 0.5, # miou50
-        aug_eval = True,
-        optimizer=optimizer,
-        # resume_model='output/iter_36400',
-        save_dir='output',
-        iters=80000,
-        batch_size=36,
-        save_interval=200,
-        log_iters=10,
-        num_workers=8, # 多线程
-        losses=losses,
-        use_vdl=True)
+    evaluate(model,
+             val_dataset,
+             aug_eval=True,
+             scales=0.5,  # m50; m75: scales=0.75
+             flip_horizontal=False,
+             flip_vertical=False,
+             is_slide=False,
+             stride=None,
+             crop_size=None,
+             num_workers=0,
+             print_detail=True)
