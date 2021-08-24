@@ -3,7 +3,7 @@
 English | [简体中文](./README_cn.md)
    
   * [STDCSeg](#stdcseg)
-      * [1 Introduction](#1-introduction)Metrics
+      * [1 Introduction](#1-introduction)
       * [2 Metrics](#2-Metrics)
       * [3 Dataset](#3-dataset)
       * [4 Environment](#4-environment)
@@ -101,7 +101,7 @@ python PaddleSeg/tools/create_dataset_list.py ./data/cityscapes/ --type cityscap
 ### install(cmd line)
 
 ```bash
-pip intall -r requirements.txt
+pip install -r requirements.txt
 ``` 
 
 ### step1: clone 
