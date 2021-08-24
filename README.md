@@ -1,25 +1,26 @@
-# ResNet
+# STDCSeg
 
 English | [简体中文](./README_cn.md)
    
-  * [ResNet](#resnet)
-      * [1 Introduction](#1-introduction)
-      * [2 Dataset](#2-dataset)
-      * [3 Environment](#3-environment)
-      * [4 Quick Start](#4-quick-start)
+  * [STDCSeg](#stdcseg)
+      * [1 Introduction](#1-introduction)Metrics
+      * [2 Metrics](#2-Metrics)
+      * [3 Dataset](#3-dataset)
+      * [4 Environment](#4-environment)
+      * [5 Quick Start](#5-quick-start)
          * [Step1: Install](#step0-Install)
          * [Step1: Clone](#step1-clone)
          * [Step2: Training](#step2-training)
          * [Step3: val](#step3-val)
          * [Use Pre-trained Models to Infer](#use-pre-trained-models-to-infer)
-      * [5 Code Structure and Explanation](#5-code-structure-and-explanation)
-         * [5.1 Code Structure](#51-code-structure)
-         * [5.2 Parameter Explanation](#52-parameter-explanation)
-         * [5.3 Training Process](#53-training-process)
+      * [6 Code Structure and Explanation](#6-code-structure-and-explanation)
+         * [6.1 Code Structure](#51-code-structure)
+         * [6.2 Parameter Explanation](#52-parameter-explanation)
+         * [6.3 Training Process](#53-training-process)
             * [One GPU Training](#one-gpu-training)
             * [Multiple GPUs Training](#multiple-gpus-training)
-      * [6 Model Information](#6-model-information)
-      * [7 Customization](#7-customization)
+      * [7 Model Information](#7-model-information)
+      * [8 Customization](#8-customization)
 
 ## 1 Introduction
 
@@ -138,9 +139,9 @@ The Pre-trained model is used to test the image, and the specific parameters (mo
 python predict.py
 ```
 
-## 5 Code Structure and Explanation
+## 6 Code Structure and Explanation
 
-### 5.1 Code Structure
+### 6.1 Code Structure
 
 ```
 ├── README.md
@@ -159,7 +160,7 @@ python predict.py
 └── predict.py 
 ```
 
-### 5.2 Parameter Explanation
+### 6.2 Parameter Explanation
 
 6.2.1 You can set training and evaluation parameters in `train.py`. And relative information is as following:
 
@@ -199,7 +200,7 @@ Except for the parameter path of the pre-trained model, other settings are consi
 
 other settings are consistent with the meaning of train.py
 
-### 5.3 Training Process
+### 6.3 Training Process
 
 #### One GPU Training
 ```bash
@@ -213,7 +214,7 @@ python -m paddle.distributed.launch train_ngpu.py
 It has not been tested yet, which may not be feasible. The paddleseg training style version will be added.
 
 
-## 6 Model Information
+## 7 Model Information
 
 Please refer to the following list to check other models’ information
 
@@ -221,14 +222,14 @@ Please refer to the following list to check other models’ information
 | --- | --- |
 | Announcer | xbchen |
 | Time | 2021.08 |
-| Framework Version | Paddle 2.0.1 |
+| Framework Version | Paddle 2.0.2 |
 | Application Scenario | Image Segmentation |
 | Supported Hardwares | XPU GPU CPU |
 | Download Links1 | [Pretrained backbone: Extraction code：tss7](https://pan.baidu.com/s/16kh3aHTBBX6wfKiIG-y3yA) |
 | Download Links2 | [STDC2-Seg50: Extraction code：nchx](https://pan.baidu.com/s/1sFHqZWhcl8hFzGCrXu_c7Q) |
 | Online Running | [AIStudio notebook](https://aistudio.baidu.com/aistudio/projectdetail/2206098) |
 
-## 7 Customization
+## 8 Customization
 
 Note: If there are problems with the above items. It may be due to careless omission of documents, spelling mistakes and so on.You can conduct quick experience projects
 with [AIStudio notebook](https://aistudio.baidu.com/aistudio/projectdetail/2206098) .
