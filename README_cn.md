@@ -102,7 +102,7 @@ python PaddleSeg/tools/create_dataset_list.py ./data/cityscapes/ --type cityscap
 ### step0: 安装必要依赖
 
 ```bash
-pip intall -r requirements.txt
+pip install -r requirements.txt
 ``` 
 
 ### step1: clone 
