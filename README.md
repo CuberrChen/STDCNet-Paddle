@@ -22,6 +22,8 @@ English | [简体中文](./README_cn.md)
       * [7 Model Information](#7-model-information)
       * [8 Customization](#8-customization)
 
+**Note**: model and corresponding loss have been added in paddleseg. There are sample YML files in configs. You can use train.py(also, val.py and predict.py) in [PaddleSeg](https://github.com/PaddlePaddle/PaddleSeg) directly. But note: there is no LR strategy used by warmup + polyday in PaddleSeg, and the default evaluation method of train.py is the whole map input evaluation.
+In order to achieve the same results as the project / paper (i.e. using warmup learning rate strategy and miou50 evaluation method in the training process), it is necessary to use WarmupPolydelay learning rate strategy under the `scheduler/` directory and modify the evaluate function input in the training function.
 ## 1 Introduction
 
 **STDC Architecture:**

@@ -20,8 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34efc129-4510-4bb3-9bad-f9302af8c7b5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README_cn.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/configs/_base_/cityscapes.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/configs/stdc2_seg_cityscapes_1024x512_80k.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddleseg/models/losses/detail_aggregate_loss.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paddleseg/models/stdcseg.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README_cn.md" beforeDir="false" afterPath="$PROJECT_DIR$/README_cn.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loss/detail_loss_paddle.py" beforeDir="false" afterPath="$PROJECT_DIR$/loss/detail_loss_paddle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paddleseg/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/paddleseg/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paddleseg/models/losses/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/paddleseg/models/losses/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +53,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
   </component>
   <component name="RecentsManager">
@@ -79,5 +87,19 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="575" y="394" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1630063836814">
+      <screen x="65" y="24" width="1855" height="1176" />
+    </state>
+    <state x="575" y="394" key="#com.intellij.fileTypes.FileTypeChooser/65.24.1855.1176@65.24.1855.1176" timestamp="1630063836814" />
+    <state x="720" y="357" key="FileChooserDialogImpl" timestamp="1629853243389">
+      <screen x="65" y="24" width="1855" height="1176" />
+    </state>
+    <state x="720" y="357" key="FileChooserDialogImpl/65.24.1855.1176@65.24.1855.1176" timestamp="1629853243389" />
+    <state x="564" y="200" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1630061650507">
+      <screen x="65" y="24" width="1855" height="1176" />
+    </state>
+    <state x="564" y="200" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/65.24.1855.1176@65.24.1855.1176" timestamp="1630061650507" />
   </component>
 </project>

@@ -14,3 +14,4 @@
 
 from .backbones import *
 from .losses import *
+from .stdcseg import STDCSeg

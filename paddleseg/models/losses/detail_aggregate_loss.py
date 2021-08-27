@@ -1,44 +1,7 @@
 import paddle
 import paddle.nn as nn
-from paddle.nn import functional as F
-
-class DiceLoss(nn.Layer):
-    """
-    Implements the dice loss function.
-
-    Args:
-        ignore_index (int64): Specifies a target value that is ignored
-            and does not contribute to the input gradient. Default ``255``.
-        smooth (float32): laplace smoothing,
-            to smooth dice loss and accelerate convergence. following:
-            https://github.com/pytorch/pytorch/issues/1249#issuecomment-337999895
-    """
-
-    def __init__(self, ignore_index=255, smooth=0.):
-        super(DiceLoss, self).__init__()
-        self.ignore_index = ignore_index
-        self.eps = 1e-5
-        self.smooth = smooth
-
-    def dice_loss_func(self,logits, labels):
-        labels = paddle.cast(labels, dtype='int32')
-        labels_one_hot = F.one_hot(labels, num_classes=logits.shape[1])
-        labels_one_hot = paddle.transpose(labels_one_hot, [0, 3, 1, 2])
-        labels_one_hot = paddle.cast(labels_one_hot, dtype='float32')
-
-        logits = F.softmax(logits, axis=1)
-
-        mask = (paddle.unsqueeze(labels, 1) != self.ignore_index)
-        logits = logits * mask
-        labels_one_hot = labels_one_hot * mask
-
-        dims = (0, ) + tuple(range(2, labels.ndimension() + 1))
-
-        intersection = paddle.sum(logits * labels_one_hot, dims)
-        cardinality = paddle.sum(logits + labels_one_hot, dims)
-        dice_loss = ((2. * intersection + self.smooth) /
-                     (cardinality + self.eps + self.smooth)).mean()
-        return 1 - dice_loss
+import paddle.nn.functional as F
+from paddleseg.cvlibs import manager
 
 def dice_loss_func(input, target):
     smooth = 1.
@@ -50,14 +13,28 @@ def dice_loss_func(input, target):
                 (paddle.sum(iflat,axis=1) + paddle.sum(tflat,axis=1) + smooth))
     return paddle.mean(loss)
 
-
+@manager.LOSSES.add_component
 class DetailAggregateLoss(nn.Layer):
+    """
+    Loss for Rethinking BiSeNet (CVPR2021) implementation based on PaddlePaddle.
+    paper: Rethinking BiSeNet For Real-time Semantic Segmentation.(https://arxiv.org/abs/2104.13188)
+    """
     def __init__(self, *args, **kwargs):
         super(DetailAggregateLoss, self).__init__()
         self.laplacian_kernel = paddle.to_tensor([-1, -1, -1, -1, 8, -1, -1, -1, -1],dtype='float32').reshape((1,1,3,3))
         self.fuse_kernel = paddle.create_parameter([1,3,1,1],dtype='float32')
 
     def forward(self, boundary_logits, gtmasks):
+        """
+        Args:
+            logit (Tensor): Logit tensor, the data type is float32, float64. Shape is
+                (N, C), where C is number of classes, and if shape is more than 2D, this
+                is (N, C, D1, D2,..., Dk), k >= 1.
+            label (Tensor): Label tensor, the data type is int64. Shape is (N), where each
+                value is 0 <= label[i] <= C-1, and if shape is more than 2D, this is
+                (N, D1, D2,..., Dk), k >= 1.
+        Returns: loss
+        """
         boundary_targets = F.conv2d(paddle.unsqueeze(gtmasks,axis=1).astype('float32'),self.laplacian_kernel, padding=1)
         boundary_targets =paddle.clip(boundary_targets,min=0)
         boundary_targets = boundary_targets>0.1
@@ -111,27 +88,3 @@ class DetailAggregateLoss(nn.Layer):
         for name, module in self.named_modules():
             nowd_params += list(module.parameters())
         return nowd_params
-
-
-# if __name__ == '__main__':
-#     # torch.manual_seed(15)
-#     # with open('../cityscapes_info.json', 'r') as fr:
-#     #     labels_info = json.load(fr)
-#     # lb_map = {el['id']: el['trainId'] for el in labels_info}
-#     #
-#     # img_path = 'data/gtFine/val/frankfurt/frankfurt_000001_037705_gtFine_labelIds.png'
-#     # img = cv2.imread(img_path, 0)
-#     #
-#     # label = np.zeros(img.shape, np.uint8)
-#     # for k, v in lb_map.items():
-#     #     label[img == k] = v
-#     #
-#     # img_tensor = torch.from_numpy(label).cuda()
-#     # img_tensor = torch.unsqueeze(img_tensor, 0).type(torch.cuda.FloatTensor)
-#     #
-#     # detailAggregateLoss = DetailAggregateLoss()
-#     # for param in detailAggregateLoss.parameters():
-#     #     print(param)
-#     #
-#     # bce_loss, dice_loss = detailAggregateLoss(torch.unsqueeze(img_tensor, 0), img_tensor)
-#     # print(bce_loss, dice_loss)
