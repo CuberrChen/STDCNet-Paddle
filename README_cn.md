@@ -23,6 +23,8 @@
 **Note**: 已经在paddleseg中增加model和相应loss,configs中有样例yml文件。可以直接使用[PaddleSeg](https://github.com/PaddlePaddle/PaddleSeg) 仓库的train.py函数方式训练（也就是将本仓库的train.py更换后使用即可，同样的eval和predict也是,使用方法见PaddleSeg文档）。但是注意：paddleseg中没有warmup+polydecay同时使用的lr策略以及该train.py在val时默认评估方式是整图输入评估。
 若要实现与本项目/论文相同的结果（即采用warmup学习率策略以及训练过程采用miou50的评估方式），需要采用scheduler目录下的Warmup_PolyDecay学习率策略以及对训练函数中的evaluate函数输入进行修改。
 
+利用PaddleSeg方式的训练评估测试：https://github.com/CuberrChen/PaddleSeg/tree/develop 
+
 ## 一、简介
 
 **STDC Architecture:**
