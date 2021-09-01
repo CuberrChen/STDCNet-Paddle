@@ -13,3 +13,4 @@
 # limitations under the License.
 
 from .resnet_vd import *
+from .stdcnet import *
